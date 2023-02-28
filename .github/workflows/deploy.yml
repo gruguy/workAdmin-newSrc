@@ -24,11 +24,11 @@ jobs:
       - name: build app
         run: sudo npm run build
       # 创建gh-pages分支并打包build代码
-      - name: Deploy on github-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.MY_TEMP_TOKEN }}
-          publish_dir: dist
+      # - name: Deploy on github-pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.MY_TEMP_TOKEN }}
+      #     publish_dir: dist
       # 拷贝dit目录到云服务器
       - name: copy dist file with scp
         uses: garygrossgarten/github-action-scp@release
@@ -37,7 +37,7 @@ jobs:
           host: ${{secrets.REMOTE_HOST}}
           username: ${{secrets.REMOTE_USER}}
           password: ${{secrets.REMOTE_PASS}}
-          port: 22
+          port: 6389
           connect_timeout: 10s
           local: "dist"
-          remote: /home/github-action
+          remote: D:\apache-tomcat-8.5.85\webapps\ROOT
