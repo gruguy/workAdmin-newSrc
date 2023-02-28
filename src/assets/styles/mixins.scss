@@ -1,0 +1,25 @@
+@use "sass:math";
+// $ratio: 375/10;
+// @function px2rem($px){
+//   @return $px/$ratio + rem;
+// }
+
+@mixin center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@mixin right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin boxShadow{
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
+}

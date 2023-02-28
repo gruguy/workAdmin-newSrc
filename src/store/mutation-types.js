@@ -1,0 +1,3 @@
+export const SET_MENUCOLLAPSE = 'SET_MENUCOLLAPSE' // 设置左侧菜单是否打开
+export const SET_MENULISTSTATE = 'SET_MENULISTSTATE' // 设置当前导航路由
+export const SET_CURRENTSELECTEDINDEX = 'SET_CURRENTSELECTEDINDEX' // 设置当前被选中的菜单
