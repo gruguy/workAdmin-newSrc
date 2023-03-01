@@ -1,4 +1,4 @@
-name: deploy-website
+name: deploy-website-try
 # 提交到master主分支触发jobs
 on:
   push:
