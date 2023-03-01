@@ -233,6 +233,7 @@ const columns = [
     title: "状态",
     dataIndex: "auditingState",
     key: "auditingState",
+    type: "hide",
     scopedSlots: { customRender: "auditingState" },
   },
   {

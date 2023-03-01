@@ -41,8 +41,8 @@
           <!-- <a-tag v-if="text == '2'" color="green">已完成</a-tag> -->
           <a-tag v-if="text == '3'" color="red">被拒绝</a-tag>
         </template>
-        <template slot="empTime" slot-scope="text, record">
-          {{ text + " 至 " + record.empTimeEnd }}
+        <template slot="empTime" slot-scope="text">
+          {{ text }}
         </template>
 
         <template slot="completionStatus" slot-scope="text">
@@ -60,13 +60,13 @@
               <a-divider type="vertical"></a-divider
             ></span>
           </template>
-          <template
+          <!-- <template
             v-has="'done'"
             v-if="record.auditingState == 1 && record.completionStatus == 0"
           >
             <a @click="setDoneState(record.appId, 1)"> 完成 </a>
             <a-divider type="vertical"></a-divider>
-          </template>
+          </template> -->
           <a v-has="'detail'" href="javascript:;" @click="openDetail(record)"
             >详情</a
           >

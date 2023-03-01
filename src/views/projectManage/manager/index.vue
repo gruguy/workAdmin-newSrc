@@ -160,6 +160,7 @@ const columns = [
     dataIndex: "empProjectName",
     width: "180px",
     key: "empProjectName",
+    type: "hide",
   },
   {
     title: "项目状态",
@@ -167,6 +168,7 @@ const columns = [
     width: "120px",
     align: "center",
     key: "clockState",
+    type: "hide",
     scopedSlots: { customRender: "clockState" },
   },
   {
@@ -175,6 +177,7 @@ const columns = [
     width: "120px",
     align: "center",
     key: "examineState",
+    type: "hide",
     scopedSlots: { customRender: "examineState" },
   },
   {
@@ -183,6 +186,7 @@ const columns = [
     key: "headNumber",
     width: "80px",
     align: "center",
+    type: "hide",
   },
   {
     title: "人头费",
@@ -190,6 +194,7 @@ const columns = [
     width: "120px",
     align: "center",
     key: "headExpense",
+    type: "hide",
   },
   {
     title: "人员产出费",
@@ -197,6 +202,7 @@ const columns = [
     width: "120px",
     align: "center",
     key: "producePriceCount",
+    type: "hide",
   },
   {
     title: "交通费",
@@ -204,6 +210,7 @@ const columns = [
     width: "120px",
     align: "center",
     key: "trafficExpense",
+    type: "hide",
   },
   {
     title: "总费用",
@@ -211,6 +218,7 @@ const columns = [
     width: "120px",
     align: "center",
     key: "totalExpense",
+    type: "hide",
     scopedSlots: { customRender: "totalExpense" },
   },
   {
@@ -218,13 +226,15 @@ const columns = [
     dataIndex: "clockStartTime",
     width: "180px",
     key: "clockStartTime",
+    type: "hide",
   },
-  {
-    title: "下班打卡",
-    dataIndex: "clockEndTime",
-    width: "180px",
-    key: "clockEndTime",
-  },
+  // {
+  //   title: "下班打卡",
+  //   dataIndex: "clockEndTime",
+  //   width: "180px",
+  //   key: "clockEndTime",
+  //   type: "hide",
+  // },
   {
     title: "操作",
     key: "action",

@@ -44,8 +44,8 @@
           <a-tag v-if="text == '0'" color="orange">未完成</a-tag>
           <a-tag v-if="text == '1'" color="blue">已完成</a-tag>
         </template>
-        <template slot="empTime" slot-scope="text, record">
-          {{ text + " 至 " + record.empTimeEnd }}
+        <template slot="empTime" slot-scope="text">
+          {{ text }}
         </template>
         <span slot="action" slot-scope="text, record">
           <span v-has="'edit'">

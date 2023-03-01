@@ -86,7 +86,13 @@
         @change="handleTableChange"
       >
         <template slot="faceImg" slot-scope="text, record">
-          <a-avatar shape="square" :size="64" icon="user" :src="text" />
+          <a-avatar
+            shape="square"
+            :size="64"
+            icon="user"
+            :src="text"
+            @click="showImage(text)"
+          />
         </template>
         <template slot="record" slot-scope="text, record">
           <div class="record-time-wrapper">
@@ -211,6 +217,16 @@ export default {
     this.getSoDataList();
   },
   methods: {
+    showImage(text) {
+      // 判断地址是否正确
+      const reg = /^[(http)(https)]/;
+      console.log(reg.test(text));
+      if (reg.test(text)) {
+        this.$viewerApi({
+          images: [text],
+        });
+      }
+    },
     selectOrg(value) {
       this.orgId = value;
       console.log(this.orgId);

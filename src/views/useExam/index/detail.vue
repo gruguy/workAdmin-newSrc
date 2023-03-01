@@ -55,11 +55,7 @@
           <a-list-item
             >用工人数：{{ detailData.empPersonalCount || "--" }}</a-list-item
           >
-          <a-list-item
-            >用工时间：{{
-              detailData.empTime + " 至 " + detailData.empTimeEnd
-            }}</a-list-item
-          >
+          <a-list-item>用工时间：{{ detailData.empTime }}</a-list-item>
           <a-list-item
             >种植类型：{{ detailData.plantTypeName || "--" }}</a-list-item
           >
