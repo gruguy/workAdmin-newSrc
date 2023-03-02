@@ -72,7 +72,11 @@
         @change="handleTableChange"
         :scroll="{ x: 1300 }"
       >
-        <template slot="totalExpense" slot-scope="text">
+        <!-- soTotalAverage" : "soTotal -->
+        <template slot="soTotalAverage" slot-scope="text">
+          <span style="font-weight: bold">￥{{ text }}</span>
+        </template>
+        <template slot="soTotal" slot-scope="text">
           <span style="font-weight: bold">￥{{ text }}</span>
         </template>
       </a-table>
@@ -98,7 +102,7 @@ const columns = [
     title: "机构名称",
     dataIndex: "soBname",
     align: "center",
-    width: "120px",
+    minWidth: "120px",
     key: "soBname",
     scopedSlots: { customRender: "soBname" },
   },
@@ -164,12 +168,14 @@ export default {
     };
     const typeRes = await this.getPlantTypeListOnce();
     this.plantTypeList = typeRes.value;
+
     this.queryParam.plantType = typeRes.value[0].id;
+    // this.queryParam.telAreaCode = typeRes.value[0].id;
     this.getDataList();
     const res = await this.getProductListAsync(typeRes.value[0].id);
     const tempCloumnArr = res && res.value;
     this.tempCloumnArr = tempCloumnArr;
-    this.staticColumn = this.columns;
+    this.staticColumn = columns;
     this.concatColumn(tempCloumnArr);
   },
   methods: {
@@ -195,6 +201,10 @@ export default {
           key: "soFname",
         });
       }
+      if (this.currentTypeIndex == 2) {
+        tempColumn = [];
+      }
+      console.log(tempCloumnArr, "tempCloumnArr");
       if (tempCloumnArr && tempCloumnArr.length) {
         tempCloumnArr.forEach((item, index) => {
           tempColumn.push({
@@ -203,21 +213,23 @@ export default {
               ? "average" + index
               : "allPriceCount" + index,
             key: this.average ? "average" + index : "allPriceCount" + index,
+            width: 80,
+            align: "center",
           });
         });
       }
       tempColumn.push({
-        title: "合计",
+        title: this.currentTypeIndex == 2 ? "总费用" : "合计",
         dataIndex:
           this.currentPriceTypeIndex == 1 ? "soTotalAverage" : "soTotal",
         align: "center",
-        width: "120px",
+        // width: "120px",
         key: this.currentPriceTypeIndex == 1 ? "soTotalAverage" : "soTotal",
         fixed: "right",
         scopedSlots: { customRender: "soTotal" },
       });
-      console.log(tempColumn);
-      this.columns = this.staticColumn.concat(tempColumn);
+      this.columns = columns.concat(tempColumn);
+      console.log(this.columns.length, "gruguy");
     },
     dateChange(val) {
       this.clockStartTimes = moment(val).format("YYYY-MM-DD");
@@ -248,8 +260,14 @@ export default {
     async changeType(index, id) {
       this.currentTypeIndex = index;
       this.queryParam.plantType = id;
-      const res = await this.getProductListAsync(id);
-      this.tempCloumnArr = res && res.value;
+      if (this.currentTypeIndex == 2) {
+        this.tempCloumnArr = [];
+        this.queryParam.telAreaCode = id;
+      } else {
+        delete this.queryParam.telAreaCode;
+        const res = await this.getProductListAsync(id);
+        this.tempCloumnArr = res && res.value;
+      }
       this.concatColumn(this.tempCloumnArr);
       this.getDataList();
     },
